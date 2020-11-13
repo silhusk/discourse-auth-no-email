@@ -1,0 +1,2 @@
+plugins:
+  auth_no_email_enabled: false

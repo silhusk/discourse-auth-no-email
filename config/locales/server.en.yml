@@ -1,0 +1,5 @@
+en:
+  site_settings:
+    auth_no_email_enabled: > 
+      Enable the discourse-auth-no-email plugin. This will fake and hide user emails from omniauth login methods.
+      This should be used in conjunction with sso_overrides_email=true, disable_emails=yes and enable_local_logins=false
