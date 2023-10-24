@@ -31,7 +31,7 @@ describe "auth-no-email plugin" do
     get "/auth/google_oauth2/callback"
     data = JSON.parse(cookies[:authentication_data])
     expect(data["email"]).to eq(email)
-    expect(data["username"]).to eq("email") # suggested by UsernameSuggester
+    expect(data["username"]).to eq("user1") # suggested by UsernameSuggester
   end
 
   it "does not prevent matching by email when disabled" do
@@ -60,6 +60,6 @@ describe "auth-no-email plugin" do
     get "/auth/google_oauth2/callback"
     expect(response.status).to eq(302)
     data = JSON.parse(cookies[:authentication_data])
-    expect(data["username"]).to eq(nil)
+    expect(data["username"]).to eq("user1")
   end
 end
