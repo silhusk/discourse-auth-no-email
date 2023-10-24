@@ -1,7 +1,7 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 describe "auth-no-email plugin" do
-
   let(:email) { "email@example.com" }
   before do
     SiteSetting.enable_local_logins = false
@@ -10,16 +10,12 @@ describe "auth-no-email plugin" do
     SiteSetting.auth_no_email_enabled = true
 
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
-      provider: 'google_oauth2',
-      uid: '123545',
-      info: OmniAuth::AuthHash::InfoHash.new(
-        email: email
-      ),
+      provider: "google_oauth2",
+      uid: "123545",
+      info: OmniAuth::AuthHash::InfoHash.new(email: email),
       extra: {
-        raw_info: OmniAuth::AuthHash.new(
-          email_verified: true
-        )
-      }
+        raw_info: OmniAuth::AuthHash.new(email_verified: true),
+      },
     )
 
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2]
