@@ -9,11 +9,6 @@ enabled_site_setting :auth_no_email_enabled
 
 register_asset "stylesheets/auth-no-email.scss"
 
-on(:before_auth) do |authenticator, auth_token|
-  next if !authenticator.is_managed?
-  auth_token.info.email = nil # Prevent matching user by email
-end
-
 on(:after_auth) do |authenticator, result|
   next if !authenticator.is_managed?
   next if !(result.email.nil? || result.email.empty?) && result.email_valid # Preserve existing and valid
