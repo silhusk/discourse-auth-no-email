@@ -16,6 +16,7 @@ end
 
 on(:after_auth) do |authenticator, result|
   next if !authenticator.is_managed?
+  next if !(result.email.nil? || result.email.empty?) && result.email_valid # Preserve existing and valid
   uid = result.extra_data[:uid]
 
   anonymised_uid = Digest::SHA1.hexdigest(uid.to_s)
